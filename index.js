@@ -55,33 +55,31 @@ const unknownEndpoint = (request, response) => {
     error: "unknown endpoint",
   });
 };
-
+/*
 const generateId = () => {
   const maxId =
     notes.length > 0 ? Math.max(...notes.map((note) => note.id)) : 0;
 
   return maxId + 1;
 };
-
+*/
 app.post("/api/notes", (request, response) => {
   const body = request.body;
 
   if (!body.content) {
     return response.status(400).json({
-      error: "Note content not found",
+      error: "content missing",
     });
   }
 
-  const note = {
+  const note = new Note({
     content: body.content,
     important: body.important || false,
-    date: new Date(),
-    id: generateId(),
-  };
+  });
 
-  notes = notes.concat(note);
-
-  response.json(note);
+  note.save().then((result) => {
+    response.json(result);
+  });
 });
 
 app.use(unknownEndpoint);

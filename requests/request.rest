@@ -5,6 +5,21 @@ POST http://localhost:3001/api/notes
 Content-Type: application/json
 
 {
-    "content" : "POSTING second noteusing mongoose to MongoDB.",
+    "content": "Hello, this is a test note.",
+    "important" : false
+}
+
+###
+GET http://localhost:3001/api/notes/63df3bf3974cc674767ddc75
+
+###
+DELETE http://localhost:3001/api/notes/63de2b79a4598e08c1c57e04
+
+###
+PUT http://localhost:3001/api/notes/63df3bf3974cc674767ddc75
+Content-Type: application/json
+
+{
+    "content" : "runValidators: true, context: 'query' }",
     "important" : false
 }
